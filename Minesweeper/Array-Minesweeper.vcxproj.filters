@@ -36,6 +36,9 @@
     <ClCompile Include="source\Sound\SoundManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\Gameplay\board.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header\Event\EventPollingManager.h">
@@ -47,14 +50,50 @@
     <ClInclude Include="header\GameLoop\GameLoop.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="header\UI\SplashScreenManager\SplashScreenManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="header\Time\TimeManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="header\Sound\SoundManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="header\UI\SplashScreen\SplashScreenManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="header\Gameplay\board.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".gitignore" />
+    <None Include="CppProperties.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="assets\textures\board.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\cells.jpeg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\instructions_button.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\menu_button.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\minesweeper_bg.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\outscal_logo.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\play_button.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\quit_button.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\restart_button.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

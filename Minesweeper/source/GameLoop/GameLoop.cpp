@@ -3,7 +3,7 @@
 #include <iostream>
 #include "..\..\header\Sound\SoundManager.h"
 
-GameState GameLoop::current_state = GameState::SPLASH_SCREEN;
+GameState GameLoop::current_state = GameState::GAMEPLAY;
 
 GameLoop::GameLoop() { initialize(); }
 
@@ -18,10 +18,13 @@ void GameLoop::initialize()
 
     // Initialize Sounds:
     Sound::SoundManager::Initialize();
-    Sound::SoundManager::PlayBackgroundMusic();
+    //Sound::SoundManager::PlayBackgroundMusic();
 
     // Initialize Time:
     Time::TimeManager::initialize();
+
+    //initialize Board:
+    board = new Gameplay_N::Board();
 }
 
 GameLoop::~GameLoop()
@@ -66,6 +69,7 @@ void GameLoop::render()
     case GameState::MAIN_MENU:
         break;
     case GameState::GAMEPLAY:
+        board->render(game_window);
         break;
     }
 
