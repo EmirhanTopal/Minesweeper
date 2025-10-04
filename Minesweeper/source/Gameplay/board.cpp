@@ -31,7 +31,7 @@ namespace Gameplay
 		backgroundSprite.setPosition(background_pos_x, background_pos_y);
 		backgroundSprite.setScale(2.0f, 1.2f);
 
-		cell = new Cell(sf::Vector2f(500, 300), 83,83);
+		cell = new Cell(sf::Vector2f(1283, 240), 81,81);
 	}
 
 	void Board::render(sf::RenderWindow &_game_window)

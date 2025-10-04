@@ -22,12 +22,17 @@ namespace UI
 		}
 		buttonSprite.setTexture(buttonTexture);
 		buttonSprite.setPosition(_position);
-		buttonSprite.setScale(_width / buttonTexture.getSize().x, _height / buttonTexture.getSize().y);
+		buttonSprite.setScale(_width / 128, _height / 128);
 	}
 
 	void Button::render(sf::RenderWindow &_game_window)
 	{
 		_game_window.draw(buttonSprite);
+	}
+
+	void Button::setTextureRect(const sf::IntRect& _button_rect)
+	{
+		buttonSprite.setTextureRect(_button_rect);
 	}
 
 }

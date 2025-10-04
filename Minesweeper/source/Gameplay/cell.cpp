@@ -17,9 +17,50 @@ namespace Gameplay
 
 	void Cell::render(sf::RenderWindow &_game_window)
 	{
+		setCellTexture();
 		//eðer cellbutton null deðilse button üzerinden render yap çünkü zaten oradaki sprite ý render edeceðiz
 		//her cell in farklý özellikleri var bomba olabilir sayý olabilir fakat hepsi clickable en baþta bu yüzden button üzerinden çaðýrýyoruz
 		if (cellButton)
 			cellButton->render(_game_window);
 	}
+
+	void Cell::changeCurrentCellState(CellState _change_cell_state)
+	{
+		currentCellState = _change_cell_state;
+	}
+
+	CellState Cell::getCurrentCellState()
+	{
+		return currentCellState;
+	}
+
+	void Cell::changeCellType(CellType _change_cell_type)
+	{
+		cellType = _change_cell_type;
+	}
+
+	CellType Cell::getCellType()
+	{
+		return cellType;
+	}
+
+	void Cell::setCellTexture()
+	{
+		int cellTypeIndexByTexture = static_cast<int>(cellType);
+		switch (currentCellState)
+		{
+			case Gameplay::HIDE:
+				cellButton->setTextureRect(sf::IntRect(128 * 10, 0, 128, 128));
+				break;
+			case Gameplay::FLAG:
+				cellButton->setTextureRect(sf::IntRect(128 * 11, 0, 128, 128));
+				break;
+			case Gameplay::OPEN:
+				cellButton->setTextureRect(sf::IntRect(cellTypeIndexByTexture * 128, 0, 128, 128));
+				break;
+			default:
+				break;
+		}
+	}
+
 }
