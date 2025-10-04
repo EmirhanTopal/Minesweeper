@@ -30,6 +30,8 @@ namespace Gameplay
 		private:
 			const int tileSize = 128;
 			const int sliceCount = 12;
+			const int cell_left_default = 575; // 575 - 1304
+			const int cell_top_default = 165; // 165 - 894
 			const std::string cellTexturePath = "assets/textures/PokemonCells.png";
 			CellState currentCellState = HIDE;
 			CellType cellType;
@@ -37,9 +39,11 @@ namespace Gameplay
 
 			UI::Button* cellButton;
 
+			sf::Vector2f getCellPos() const;
+
 		public:
-			Cell(sf::Vector2f _position, float _width, float _height);
-			void initialize(sf::Vector2f _position, float _width, float _height);
+			Cell(float _width, float _height);
+			void initialize(float _width, float _height);
 			void render(sf::RenderWindow & _game_window);
 			void changeCurrentCellState(CellState _change_cell_state);
 			CellState getCurrentCellState();

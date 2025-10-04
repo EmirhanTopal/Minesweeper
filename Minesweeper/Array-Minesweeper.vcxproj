@@ -168,6 +168,7 @@
     <Image Include="assets\textures\outscal_logo.png" />
     <Image Include="assets\textures\play_button.png" />
     <Image Include="assets\textures\PokemonBoard.png" />
+    <Image Include="assets\textures\PokemonBoard2.png" />
     <Image Include="assets\textures\PokemonCells.png" />
     <Image Include="assets\textures\pokemon_bg.png" />
     <Image Include="assets\textures\quit_button.png" />

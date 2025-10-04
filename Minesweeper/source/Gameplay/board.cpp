@@ -25,13 +25,13 @@ namespace Gameplay
 			backgroundSprite.setTexture(backgroundTexture);
 
 		boardSprite.setPosition(board_pos_x, board_pos_y);
-		boardSprite.setScale(boardWidth / boardTexture.getSize().x,
-			boardHeight / boardTexture.getSize().y);
+		//boardSprite.setScale(boardWidth / boardTexture.getSize().x,
+			//boardHeight / boardTexture.getSize().y);
 
 		backgroundSprite.setPosition(background_pos_x, background_pos_y);
 		backgroundSprite.setScale(2.0f, 1.2f);
 
-		cell = new Cell(sf::Vector2f(1283, 240), 81,81);
+		cell = new Cell(getCellOfBoardColumn(), getCellOfBoardRow()); //554 - 1283
 	}
 
 	void Board::render(sf::RenderWindow &_game_window)
@@ -39,5 +39,16 @@ namespace Gameplay
 		_game_window.draw(backgroundSprite);
 		_game_window.draw(boardSprite);
 		cell->render(_game_window);
+	}
+
+	float Board::getCellOfBoardRow()
+	{
+		return (boardPlayableWidth / numOfRows);
+	}
+
+	float Board::getCellOfBoardColumn()
+	{
+		return (boardPlayableHeight / numOfColumns);
+
 	}
 }

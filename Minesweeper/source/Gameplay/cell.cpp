@@ -3,16 +3,17 @@
 
 namespace Gameplay
 {
-	Cell::Cell(sf::Vector2f _position, float _width, float _height)
+	Cell::Cell(float _width, float _height)
 	{
-		initialize(_position, _width, _height);
+		initialize(_width, _height);
 	}
 
-	void Cell::initialize(sf::Vector2f _position, float _width, float _height)
+	void Cell::initialize(float _width, float _height)
 	{
-		this->position = _position; // cell position ayarla ve sonrasýnda bu bir clickable olduðu için button çaðýr
+		// cell position ayarla ve sonrasýnda bu bir clickable olduðu için button çaðýr
 		//button init edilen path pos width height alýr ve sprite ý buna göre ayarlar
-		cellButton = new UI::Button(cellTexturePath, position, _width, _height);
+		sf::Vector2f cell_pos = getCellPos();
+		cellButton = new UI::Button(cellTexturePath, cell_pos, _width, _height);
 	}
 
 	void Cell::render(sf::RenderWindow &_game_window)
@@ -50,17 +51,22 @@ namespace Gameplay
 		switch (currentCellState)
 		{
 			case Gameplay::HIDE:
-				cellButton->setTextureRect(sf::IntRect(128 * 10, 0, 128, 128));
+				cellButton->setTextureRect(sf::IntRect(tileSize * 10, 0, tileSize, tileSize));
 				break;
 			case Gameplay::FLAG:
-				cellButton->setTextureRect(sf::IntRect(128 * 11, 0, 128, 128));
+				cellButton->setTextureRect(sf::IntRect(tileSize * 11, 0, tileSize, tileSize));
 				break;
 			case Gameplay::OPEN:
-				cellButton->setTextureRect(sf::IntRect(cellTypeIndexByTexture * 128, 0, 128, 128));
+				cellButton->setTextureRect(sf::IntRect(cellTypeIndexByTexture * tileSize, 0, tileSize, tileSize));
 				break;
 			default:
 				break;
 		}
+	}
+
+	sf::Vector2f Cell::getCellPos() const
+	{
+		return sf::Vector2f(cell_left_default, cell_top_default);
 	}
 
 }

@@ -39,6 +39,12 @@
     <ClCompile Include="source\Gameplay\board.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\Gameplay\cell.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\UI\UIElements\Button\button.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header\Event\EventPollingManager.h">
@@ -60,6 +66,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="header\Gameplay\board.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="header\Gameplay\Cell.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="header\UI\UIElements\Button\Button.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -93,6 +105,18 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="assets\textures\restart_button.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\PokemonBoard.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\PokemonCells.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\pokemon_bg.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\PokemonBoard2.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
