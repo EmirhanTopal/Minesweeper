@@ -24,7 +24,7 @@ class GameLoop {
         sf::RenderWindow* game_window;
         SplashScreenManager* splash_screen_manager;
 
-        Gameplay_N::Board* board;
+        Gameplay::Board* board;
 
         static GameState current_state;
 

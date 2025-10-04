@@ -1,8 +1,9 @@
 #pragma once
+#include "../../header/Gameplay/Cell.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
-namespace Gameplay_N
+namespace Gameplay
 {
 	class Board
 	{
@@ -22,11 +23,14 @@ namespace Gameplay_N
 			std::string backgroundTexturePath = "assets/textures/pokemon_bg.png";
 			float background_pos_x = 0.0f;
 			float background_pos_y = 0.0f;
+
+			//cell
+			Cell *cell;
+
 		public:
 			Board();
 			void initialize();
-			void initTexture();
 			void initVariables();
-			void render(sf::RenderWindow *_render_window);
+			void render(sf::RenderWindow &_render_window);
 	};
 }
