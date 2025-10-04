@@ -16,8 +16,8 @@ namespace Gameplay
 			float board_pos_y = 0.0f;
 			const float boardPlayableWidth = 810.0f;
 			const float boardPlayableHeight = 810.0f;
-			int numOfRows = 12;
-			int numOfColumns = 12;
+			const static int numOfRows = 12; // compile time da programýn anlayabilmesi için her member için ayný ve deðiþtirilemez
+			const static int numOfColumns = 12; // compile time da programýn anlayabilmesi için her member için ayný ve deðiþtirilemez
 			//const float boardHeight = 1080.f;
 
 			//background
@@ -28,14 +28,14 @@ namespace Gameplay
 			float background_pos_y = 0.0f;
 
 			//cell
-			Cell *cell;
+			Cell *cellArray[numOfRows][numOfColumns];
 
 		public:
 			Board();
 			void initialize();
 			void initVariables();
 			void render(sf::RenderWindow &_render_window);
-			float getCellOfBoardRow();
-			float getCellOfBoardColumn();
+			float getCellSizeWidth();
+			float getCellSizeHeight();
 	};
 }
