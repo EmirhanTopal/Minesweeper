@@ -1,6 +1,6 @@
 #include "../../header/Gameplay/board.h"
 
-namespace Gameplay_N
+namespace Gameplay
 {
 	Board::Board()
 	{
@@ -9,11 +9,10 @@ namespace Gameplay_N
 
 	void Board::initialize()
 	{
-		initTexture();
 		initVariables();
 	}
 
-	void Board::initTexture()
+	void Board::initVariables()
 	{
 		if (!boardTexture.loadFromFile(boardTexturePath))
 			std::cout << "file could not be opened";
@@ -25,21 +24,31 @@ namespace Gameplay_N
 		else
 			backgroundSprite.setTexture(backgroundTexture);
 
-	}
-
-	void Board::initVariables()
-	{
 		boardSprite.setPosition(board_pos_x, board_pos_y);
-		boardSprite.setScale(boardWidth / boardTexture.getSize().x,
-			boardHeight / boardTexture.getSize().y);
+		//boardSprite.setScale(boardWidth / boardTexture.getSize().x,
+			//boardHeight / boardTexture.getSize().y);
 
 		backgroundSprite.setPosition(background_pos_x, background_pos_y);
 		backgroundSprite.setScale(2.0f, 1.2f);
+
+		cell = new Cell(getCellOfBoardColumn(), getCellOfBoardRow()); //554 - 1283
 	}
 
-	void Board::render(sf::RenderWindow* _render_window)
+	void Board::render(sf::RenderWindow &_game_window)
 	{
-		_render_window->draw(backgroundSprite);
-		_render_window->draw(boardSprite);
+		_game_window.draw(backgroundSprite);
+		_game_window.draw(boardSprite);
+		cell->render(_game_window);
+	}
+
+	float Board::getCellOfBoardRow()
+	{
+		return (boardPlayableWidth / numOfRows);
+	}
+
+	float Board::getCellOfBoardColumn()
+	{
+		return (boardPlayableHeight / numOfColumns);
+
 	}
 }

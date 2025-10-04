@@ -24,7 +24,7 @@ void GameLoop::initialize()
     Time::TimeManager::initialize();
 
     //initialize Board:
-    board = new Gameplay_N::Board();
+    board = new Gameplay::Board();
 }
 
 GameLoop::~GameLoop()
@@ -69,7 +69,7 @@ void GameLoop::render()
     case GameState::MAIN_MENU:
         break;
     case GameState::GAMEPLAY:
-        board->render(game_window);
+        board->render(*game_window);
         break;
     }
 
