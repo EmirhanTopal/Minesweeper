@@ -3,17 +3,18 @@
 
 namespace Gameplay
 {
-	Cell::Cell(float _width, float _height)
+	Cell::Cell(float _width, float _height, sf::Vector2f _position)
 	{
-		initialize(_width, _height);
+		initialize(_width, _height, _position);
 	}
 
-	void Cell::initialize(float _width, float _height)
+	void Cell::initialize(float _width, float _height, sf::Vector2f _position)
 	{
+		this->position = _position;
 		// cell position ayarla ve sonrasýnda bu bir clickable olduðu için button çaðýr
 		//button init edilen path pos width height alýr ve sprite ý buna göre ayarlar
 		sf::Vector2f cell_pos = getCellPos();
-		cellButton = new UI::Button(cellTexturePath, cell_pos, _width, _height);
+		cellButton = new UI::Button(cellTexturePath, position, _width, _height);
 	}
 
 	void Cell::render(sf::RenderWindow &_game_window)
@@ -67,6 +68,16 @@ namespace Gameplay
 	sf::Vector2f Cell::getCellPos() const
 	{
 		return sf::Vector2f(cell_left_default, cell_top_default);
+	}
+
+	int Cell::getCellLeftValue()
+	{
+		return cell_left_default;
+	}
+
+	int Cell::getCellTopValue()
+	{
+		return cell_top_default;
 	}
 
 }
