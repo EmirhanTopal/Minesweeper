@@ -30,7 +30,7 @@ namespace Gameplay
 		private:
 			const int tileSize = 128;
 			const int sliceCount = 12;
-			const static int cell_left_default = 575; // 575 - 1304
+			const static int cell_left_default = 570; // 575 - 1304
 			const static int cell_top_default = 165; // 165 - 894
 			const std::string cellTexturePath = "assets/textures/PokemonCells.png";
 			CellState currentCellState = HIDE;
