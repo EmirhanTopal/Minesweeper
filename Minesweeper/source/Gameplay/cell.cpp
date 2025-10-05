@@ -65,9 +65,9 @@ namespace Gameplay
 		}
 	}
 
-	sf::Vector2f Cell::getCellPos() const
+	sf::Vector2f Cell::getCellPos()
 	{
-		return sf::Vector2f(cell_left_default, cell_top_default);
+		return sf::Vector2f(position.x, position.y);
 	}
 
 	int Cell::getCellLeftValue()
@@ -78,6 +78,16 @@ namespace Gameplay
 	int Cell::getCellTopValue()
 	{
 		return cell_top_default;
+	}
+
+	int Cell::increaseCellValue()
+	{
+		return cellValue++;
+	}
+
+	int Cell::getCellValue()
+	{
+		return cellValue;
 	}
 
 }
