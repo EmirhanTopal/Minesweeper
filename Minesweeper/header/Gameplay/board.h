@@ -2,6 +2,7 @@
 #include "../../header/Gameplay/Cell.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include <random>
 
 namespace Gameplay
 {
@@ -18,7 +19,6 @@ namespace Gameplay
 			const float boardPlayableHeight = 810.0f;
 			const static int numOfRows = 12; // compile time da programýn anlayabilmesi için her member için ayný ve deðiþtirilemez
 			const static int numOfColumns = 12; // compile time da programýn anlayabilmesi için her member için ayný ve deðiþtirilemez
-			//const float boardHeight = 1080.f;
 
 			//background
 			sf::Texture backgroundTexture;
@@ -31,11 +31,19 @@ namespace Gameplay
 			Cell *cellArray[numOfRows][numOfColumns];
 
 		public:
+			bool isValueChanged = true;
+
 			Board();
 			void initialize();
 			void initVariables();
 			void render(sf::RenderWindow &_render_window);
 			float getCellSizeWidth();
 			float getCellSizeHeight();
+			void fillBoard();
+			void fillWithMines();
+			void setCellValues();
+			int cellAroundControl(int _i, int _j);
+			void setCellBombValue(int _i, int _j, int _bomb_count);
+			
 	};
 }

@@ -4,7 +4,7 @@
 
 namespace Gameplay
 {
-	enum class CellType
+	enum CellType
 	{
 		EMPTY,
 		ONE,
@@ -28,18 +28,18 @@ namespace Gameplay
 	class Cell
 	{
 		private:
+			int cellValue = 0;
 			const int tileSize = 128;
 			const int sliceCount = 12;
 			const static int cell_left_default = 570; // 575 - 1304
 			const static int cell_top_default = 165; // 165 - 894
 			const std::string cellTexturePath = "assets/textures/PokemonCells.png";
-			CellState currentCellState = HIDE;
-			CellType cellType;
+			CellState currentCellState = OPEN;
+			CellType cellType = EMPTY;
 			sf::Vector2f position;
 
 			UI::Button* cellButton;
 
-			sf::Vector2f getCellPos() const;
 
 		public:
 			Cell(float _width, float _height, sf::Vector2f _position);
@@ -52,6 +52,9 @@ namespace Gameplay
 			CellType getCellType();
 			static int getCellLeftValue();
 			static int getCellTopValue();
+			int increaseCellValue();
+			int getCellValue();
+			sf::Vector2f getCellPos();
 
 	};
 }
