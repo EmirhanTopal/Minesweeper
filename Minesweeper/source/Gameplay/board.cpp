@@ -35,7 +35,7 @@ namespace Gameplay
 		{
 			for (size_t j = 0; j < numOfColumns; j++)
 			{
-				cellArray[i][j] = new Cell(getCellSizeHeight(), getCellSizeWidth(), 
+				cellArray[i][j] = new Cell(getCellSizeHeight(), getCellSizeWidth(),
 					sf::Vector2f(Cell::getCellLeftValue() + j * getCellSizeHeight() + j, Cell::getCellTopValue() + i * getCellSizeHeight()));
 			}
 		}
