@@ -2,6 +2,7 @@
 #include "../../header/Gameplay/Cell.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include <random>
 
 namespace Gameplay
 {
@@ -37,5 +38,7 @@ namespace Gameplay
 			void render(sf::RenderWindow &_render_window);
 			float getCellSizeWidth();
 			float getCellSizeHeight();
+			void fillBoard();
+			void fillWithMines();
 	};
 }

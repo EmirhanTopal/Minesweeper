@@ -4,7 +4,7 @@
 
 namespace Gameplay
 {
-	enum class CellType
+	enum CellType
 	{
 		EMPTY,
 		ONE,
@@ -34,7 +34,7 @@ namespace Gameplay
 			const static int cell_top_default = 165; // 165 - 894
 			const std::string cellTexturePath = "assets/textures/PokemonCells.png";
 			CellState currentCellState = HIDE;
-			CellType cellType;
+			CellType cellType = EMPTY;
 			sf::Vector2f position;
 
 			UI::Button* cellButton;
