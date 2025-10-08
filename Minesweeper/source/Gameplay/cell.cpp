@@ -141,4 +141,12 @@ namespace Gameplay
 		if (canOpenCell())
 			changeCurrentCellState(CellState::OPEN);
 	}
+
+	void Cell::putFlag()
+	{
+		if (currentCellState == CellState::HIDE)
+			changeCurrentCellState(CellState::FLAG);
+		else if (currentCellState == CellState::FLAG)
+			changeCurrentCellState(CellState::HIDE);
+	}
 }

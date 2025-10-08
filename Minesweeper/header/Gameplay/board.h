@@ -31,10 +31,9 @@ namespace Gameplay
 
 			//cell
 			Cell *cellArray[numOfRows][numOfColumns];
+			int flagCellCount = 0;
 
 		public:
-			bool isValueChanged = true;
-
 			Board();
 			void initialize();
 			void update(Event::EventPollingManager& _event_manager, sf::RenderWindow &_game_window);
@@ -49,5 +48,6 @@ namespace Gameplay
 			void setCellBombValue(int _i, int _j, int _bomb_count);
 			void onCellButtonClicked(sf::Vector2i _cell_array_pos, UI::MouseButtonType _button_type);
 			void openCell(sf::Vector2i _cell_array_pos);
+			void flagCell(sf::Vector2i _cell_array_pos);
 	};
 }

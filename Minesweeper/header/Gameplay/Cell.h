@@ -64,5 +64,6 @@ namespace Gameplay
 			void cellButtonCallback(UI::MouseButtonType button_type);
 			bool canOpenCell();
 			void open();
+			void putFlag();
 	};
 }
