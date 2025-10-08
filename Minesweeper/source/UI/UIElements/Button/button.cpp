@@ -35,4 +35,23 @@ namespace UI
 		buttonSprite.setTextureRect(_button_rect);
 	}
 
+	bool Button::isMouseOnSprite(Event::EventPollingManager& _event_manager, sf::RenderWindow& _game_window)
+	{
+		sf::Vector2i mouse_pos = _event_manager.getMousePosition();
+		return buttonSprite.getGlobalBounds().contains(static_cast<sf::Vector2f>(mouse_pos));
+	}
+
+	void Button::detectMouseClick(Event::EventPollingManager& _event_manager, sf::RenderWindow& _game_window)
+	{
+		if (_event_manager.pressedLeftMouseButton() && isMouseOnSprite(_event_manager, _game_window))
+			callBackFunc(MouseButtonType::LEFT_CLICK); // callBackFunc þimdi paramteresi ** leftClick ** olarak atanan dinamik bir fonksiyon onu o paramterle ile her yerde kullanabiliriz
+
+		else if (_event_manager.pressedRightMouseButton() && isMouseOnSprite(_event_manager, _game_window))
+			callBackFunc(MouseButtonType::RIGHT_CLICK); // callBackFunc þimdi paramteresi ** rightClick ** olarak atanan dinamik bir fonksiyon onu o paramterle ile her yerde kullanabiliriz
+	}
+
+	void Button::registerCallBackFunc(CallBackFunc _button_call_back)
+	{
+		callBackFunc = _button_call_back;
+	}
 }

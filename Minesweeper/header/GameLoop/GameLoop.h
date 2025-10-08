@@ -3,6 +3,7 @@
 #include "../../header/Event/EventPollingManager.h"
 #include "../../header/UI/SplashScreen/SplashScreenManager.h"
 #include "../../header/Gameplay/board.h"
+#include "../../header/Gameplay/GameplayManager.h"
 
 using namespace GameWindow;
 using namespace Event;
@@ -24,7 +25,7 @@ class GameLoop {
         sf::RenderWindow* game_window;
         SplashScreenManager* splash_screen_manager;
 
-        Gameplay::Board* board;
+        Gameplay::GameplayManager* gameplay_manager;
 
         static GameState current_state;
 
