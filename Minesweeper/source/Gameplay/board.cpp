@@ -1,15 +1,16 @@
 #include "../../header/Gameplay/board.h"
+#include "../../header/Gameplay/gameplayManager.h"
 
 namespace Gameplay
 {
-	Board::Board()
+	Board::Board(GameplayManager* _gameplayManager)
 	{
-		initialize();
+		initialize(_gameplayManager);
 	}
 
-	void Board::initialize()
+	void Board::initialize(GameplayManager* _gameplayManager)
 	{
-		initVariables();
+		initVariables(_gameplayManager);
 	}
 
 	void Board::update(Event::EventPollingManager &_event_manager, sf::RenderWindow &_game_window)
@@ -21,9 +22,10 @@ namespace Gameplay
 				cellArray[i][j]->update(_event_manager, _game_window);
 			}
 		}
+		
 	}
 
-	void Board::initVariables()
+	void Board::initVariables(GameplayManager* _gameplayManager)
 	{
 		if (!boardTexture.loadFromFile(boardTexturePath))
 			std::cout << "file could not be opened";
@@ -45,6 +47,8 @@ namespace Gameplay
 		fillBoard();
 		fillWithMines();
 		setCellValues();
+
+		this->_gameplayManager = _gameplayManager;
 	}
 
 	void Board::render(sf::RenderWindow &_game_window)
@@ -86,7 +90,7 @@ namespace Gameplay
 	{
 		std::random_device rd;
 		std::default_random_engine engine(rd());
-		std::uniform_int_distribution<int> mines_count_dist(10, 20);
+		std::uniform_int_distribution<int> mines_count_dist(10, 12);
 		int mines_count = mines_count_dist(engine);
 		while (mines_count > 0)
 		{
@@ -172,8 +176,18 @@ namespace Gameplay
 
 	void Board::onCellButtonClicked(sf::Vector2i _cell_array_pos, UI::MouseButtonType _button_type)
 	{
-		if (_button_type == UI::MouseButtonType::LEFT_CLICK) 
+		if (_button_type == UI::MouseButtonType::LEFT_CLICK)
+		{
 			openCell(_cell_array_pos);
+			if (_gameplayManager->getGameResult() != GameResult::LOST)
+			{
+				if (checkWin())
+				{
+					_gameplayManager->setGameResult(GameResult::WIN);
+					std::cout << "win";
+				}
+			}
+		}
 
 		else if (_button_type == UI::MouseButtonType::RIGHT_CLICK)
 		{
@@ -198,6 +212,7 @@ namespace Gameplay
 				break;
 			case(CellType::BOMB):
 				openBombCells();
+				_gameplayManager->setGameResult(GameResult::LOST);
 				break;
 			default:
 				cellArray[_cell_array_pos.x][_cell_array_pos.y]->open();
@@ -263,5 +278,34 @@ namespace Gameplay
 	void Board::flagCell(sf::Vector2i _cell_array_pos)
 	{
 		cellArray[_cell_array_pos.x][_cell_array_pos.y]->putFlag();
+	}
+
+	bool Board::checkWin()
+	{
+		for (size_t i = 0; i < numOfRows; i++)
+		{
+			for (size_t j = 0; j < numOfColumns; j++)
+			{
+				if (cellArray[i][j]->getCellType() == CellType::BOMB && cellArray[i][j]->getCurrentCellState() == CellState::HIDE)
+				{
+					continue;
+				}
+				else if (cellArray[i][j]->getCurrentCellState() == CellState::HIDE || cellArray[i][j]->getCurrentCellState() == CellState::FLAG)
+				{
+					return false;
+				}
+			}
+		}
+		for (size_t i = 0; i < numOfRows; i++)
+		{
+			for (size_t j = 0; j < numOfColumns; j++)
+			{
+				if (cellArray[i][j]->getCellType() == CellType::BOMB)
+				{
+					cellArray[i][j]->changeCurrentCellState(CellState::FLAG);
+				}
+			}
+		}
+		return true;
 	}
 }

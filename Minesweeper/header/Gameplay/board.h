@@ -8,6 +8,7 @@
 
 namespace Gameplay
 {
+	class GameplayManager;
 	class Board
 	{
 		private:
@@ -19,8 +20,8 @@ namespace Gameplay
 			float board_pos_y = 0.0f;
 			const float boardPlayableWidth = 810.0f;
 			const float boardPlayableHeight = 810.0f;
-			const static int numOfRows = 10; // compile time da programýn anlayabilmesi için her member için ayný ve deðiþtirilemez
-			const static int numOfColumns = 10; // compile time da programýn anlayabilmesi için her member için ayný ve deðiþtirilemez
+			const static int numOfRows = 8; // compile time da programýn anlayabilmesi için her member için ayný ve deðiþtirilemez
+			const static int numOfColumns = 8; // compile time da programýn anlayabilmesi için her member için ayný ve deðiþtirilemez
 
 			//background
 			sf::Texture backgroundTexture;
@@ -33,11 +34,14 @@ namespace Gameplay
 			Cell *cellArray[numOfRows][numOfColumns];
 			int flagCellCount = 0;
 
+			//GameplayManager
+			GameplayManager *_gameplayManager;
+
 		public:
-			Board();
-			void initialize();
+			Board(GameplayManager* _gameplayManager);
+			void initialize(GameplayManager* _gameplayManager);
+			void initVariables(GameplayManager* _gameplayManager);
 			void update(Event::EventPollingManager& _event_manager, sf::RenderWindow &_game_window);
-			void initVariables();
 			void render(sf::RenderWindow &_render_window);
 			float getCellSizeWidth();
 			float getCellSizeHeight();
@@ -51,5 +55,6 @@ namespace Gameplay
 			void flagCell(sf::Vector2i _cell_array_pos);
 			void openEmptyCells(int i, int j);
 			void openBombCells();
+			bool checkWin();
 	};
 }

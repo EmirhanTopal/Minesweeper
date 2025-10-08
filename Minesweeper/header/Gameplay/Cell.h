@@ -2,8 +2,6 @@
 #include <SFML/Graphics.hpp>
 #include "../../header/UI/UIElements/Button/Button.h"
 
-
-
 namespace Gameplay
 {
 	enum CellType
