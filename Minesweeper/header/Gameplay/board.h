@@ -49,5 +49,7 @@ namespace Gameplay
 			void onCellButtonClicked(sf::Vector2i _cell_array_pos, UI::MouseButtonType _button_type);
 			void openCell(sf::Vector2i _cell_array_pos);
 			void flagCell(sf::Vector2i _cell_array_pos);
+			void openEmptyCells(int i, int j);
+			void openBombCells();
 	};
 }

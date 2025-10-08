@@ -189,7 +189,75 @@ namespace Gameplay
 
 	void Board::openCell(sf::Vector2i _cell_array_pos)
 	{
-		cellArray[_cell_array_pos.x][_cell_array_pos.y]->open();
+		if (cellArray[_cell_array_pos.x][_cell_array_pos.y]->getCurrentCellState() == CellState::OPEN)
+			return;
+		switch (cellArray[_cell_array_pos.x][_cell_array_pos.y]->getCellType())
+		{
+			case(CellType::EMPTY):
+				openEmptyCells(_cell_array_pos.x, _cell_array_pos.y);
+				break;
+			case(CellType::BOMB):
+				openBombCells();
+				break;
+			default:
+				cellArray[_cell_array_pos.x][_cell_array_pos.y]->open();
+				break;
+		}
+
+	}
+
+	void Board::openEmptyCells(int i, int j)
+	{
+		cellArray[i][j]->open();
+		if (cellArray[i][j]->getCellType() != CellType::BOMB)
+		{
+			if (j > 0 && cellArray[i][j - 1]->getCellType() != CellType::BOMB)
+			{
+				openCell(sf::Vector2i(i, j - 1));
+			}
+			if (j < (numOfColumns - 1) && cellArray[i][j + 1]->getCellType() != CellType::BOMB)
+			{
+				openCell(sf::Vector2i(i, j + 1));
+			}
+			if (i > 0 && j > 0 && cellArray[i - 1][j - 1]->getCellType() != CellType::BOMB)
+			{
+				openCell(sf::Vector2i(i - 1, j - 1));
+			}
+			if (i > 0 && cellArray[i - 1][j]->getCellType() != CellType::BOMB)
+			{
+				openCell(sf::Vector2i(i - 1, j));
+			}
+			if (i > 0 && j < (numOfColumns - 1) && cellArray[i - 1][j + 1]->getCellType() != CellType::BOMB)
+			{
+				openCell(sf::Vector2i(i - 1, j + 1));
+			}
+			if (i < (numOfRows - 1) && j > 0 && cellArray[i + 1][j - 1]->getCellType() != CellType::BOMB)
+			{
+				openCell(sf::Vector2i(i + 1, j - 1));;
+			}
+			if (i < (numOfRows - 1) && cellArray[i + 1][j]->getCellType() != CellType::BOMB)
+			{
+				openCell(sf::Vector2i(i + 1, j));
+			}
+			if (i < (numOfRows - 1) && j < (numOfColumns - 1) && cellArray[i + 1][j + 1]->getCellType() != CellType::BOMB)
+			{
+				openCell(sf::Vector2i(i + 1, j + 1));
+			}
+		}
+	}
+
+	void Board::openBombCells()
+	{
+		for (size_t i = 0; i < numOfRows; i++)
+		{
+			for (size_t j = 0; j < numOfColumns; j++)
+			{
+				if (cellArray[i][j]->getCellType() == CellType::BOMB && cellArray[i][j]->getCurrentCellState() != CellState::OPEN)
+				{
+					cellArray[i][j]->open();
+				}
+			}
+		}
 	}
 
 	void Board::flagCell(sf::Vector2i _cell_array_pos)
