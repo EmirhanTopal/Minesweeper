@@ -1,20 +1,55 @@
 #include "../../header/Gameplay/Cell.h"
-#include "../../header/UI/UIElements/Button/Button.h",
+#include "../../header/UI/UIElements/Button/Button.h"
+#include "../../header/Event/EventPollingManager.h"
+#include "../../header/Gameplay/board.h"
 
 namespace Gameplay
 {
-	Cell::Cell(float _width, float _height, sf::Vector2f _position)
+	Cell::Cell(float _width, float _height, sf::Vector2f _position, Board* _board, sf::Vector2i _arr_pos)
 	{
-		initialize(_width, _height, _position);
+		initialize(_width, _height, _position, _board, _arr_pos);
 	}
 
-	void Cell::initialize(float _width, float _height, sf::Vector2f _position)
+	void Cell::initialize(float _width, float _height, sf::Vector2f _position, Board* _board, sf::Vector2i _arr_pos)
 	{
 		this->position = _position;
 		// cell position ayarla ve sonrasýnda bu bir clickable olduðu için button çaðýr
 		//button init edilen path pos width height alýr ve sprite ý buna göre ayarlar
-		sf::Vector2f cell_pos = getCellPos();
+		this->board = _board;
+		rowAndColumn = _arr_pos;
 		cellButton = new UI::Button(cellTexturePath, position, _width, _height);
+		registerCellButtonCallback();
+	}
+
+	void Cell::cellButtonCallback(UI::MouseButtonType _button_type)
+	{
+		board->onCellButtonClicked(getRowAndColumnArray(), _button_type);
+	}
+
+	// lambda function explaning
+
+	/*void A(UI::MouseButtonType _button_type)
+	{
+		std::cout << "sa";
+	}*/
+
+	void Cell::registerCellButtonCallback()
+	{
+		//lambda function - *önemli*
+		//cellButton->registerCallBackFunc(A); // ayný þey
+		cellButton->registerCallBackFunc([this](UI::MouseButtonType _button_type)
+		{
+			cellButtonCallback(_button_type);
+		});
+
+	}
+
+	void Cell::update(Event::EventPollingManager& _event_manager, sf::RenderWindow &_game_window)
+	{
+		if (cellButton)
+		{
+			cellButton->detectMouseClick(_event_manager, _game_window);
+		}
 	}
 
 	void Cell::render(sf::RenderWindow &_game_window)
@@ -80,14 +115,30 @@ namespace Gameplay
 		return cell_top_default;
 	}
 
-	int Cell::increaseCellValue()
+	sf::Vector2i Cell::setRowAndColumnArray(int _row, int _column)
 	{
-		return cellValue++;
+		rowAndColumn.x = _row;
+		rowAndColumn.y = _column;
+		return rowAndColumn;
 	}
 
-	int Cell::getCellValue()
+	sf::Vector2i Cell::getRowAndColumnArray()
 	{
-		return cellValue;
+		return rowAndColumn;
 	}
 
+	bool Cell::canOpenCell()
+	{
+		if (currentCellState == CellState::HIDE)
+		{
+			return true;
+		}
+		return false;
+	}
+
+	void Cell::open()
+	{
+		if (canOpenCell())
+			changeCurrentCellState(CellState::OPEN);
+	}
 }

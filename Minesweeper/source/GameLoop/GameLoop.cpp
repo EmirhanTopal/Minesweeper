@@ -2,6 +2,7 @@
 #include "../../header/Time/TimeManager.h"
 #include <iostream>
 #include "..\..\header\Sound\SoundManager.h"
+#include "..\..\header\Gameplay\gameplayManager.h"
 
 GameState GameLoop::current_state = GameState::GAMEPLAY;
 
@@ -23,8 +24,9 @@ void GameLoop::initialize()
     // Initialize Time:
     Time::TimeManager::initialize();
 
-    //initialize Board:
-    board = new Gameplay::Board();
+    //initialize gameplaymanager:
+    gameplay_manager = new Gameplay::GameplayManager();
+    gameplay_manager->initialize();
 }
 
 GameLoop::~GameLoop()
@@ -48,6 +50,7 @@ void GameLoop::update()
     case GameState::MAIN_MENU:
         break;
     case GameState::GAMEPLAY:
+        gameplay_manager->update(*event_manager, *window_manager->getGameWindow());
         break;
     case GameState::EXIT:
         game_window->close();
@@ -69,7 +72,7 @@ void GameLoop::render()
     case GameState::MAIN_MENU:
         break;
     case GameState::GAMEPLAY:
-        board->render(*game_window);
+        gameplay_manager->render(*window_manager->getGameWindow());
         break;
     }
 

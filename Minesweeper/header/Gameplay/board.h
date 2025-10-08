@@ -1,8 +1,10 @@
 #pragma once
-#include "../../header/Gameplay/Cell.h"
+#include "../../header/UI/UIElements/Button/Button.h"
 #include <SFML/Graphics.hpp>
+#include <array>
 #include <iostream>
 #include <random>
+#include "../../header/Gameplay/Cell.h"
 
 namespace Gameplay
 {
@@ -17,8 +19,8 @@ namespace Gameplay
 			float board_pos_y = 0.0f;
 			const float boardPlayableWidth = 810.0f;
 			const float boardPlayableHeight = 810.0f;
-			const static int numOfRows = 12; // compile time da programýn anlayabilmesi için her member için ayný ve deðiþtirilemez
-			const static int numOfColumns = 12; // compile time da programýn anlayabilmesi için her member için ayný ve deðiþtirilemez
+			const static int numOfRows = 10; // compile time da programýn anlayabilmesi için her member için ayný ve deðiþtirilemez
+			const static int numOfColumns = 10; // compile time da programýn anlayabilmesi için her member için ayný ve deðiþtirilemez
 
 			//background
 			sf::Texture backgroundTexture;
@@ -35,6 +37,7 @@ namespace Gameplay
 
 			Board();
 			void initialize();
+			void update(Event::EventPollingManager& _event_manager, sf::RenderWindow &_game_window);
 			void initVariables();
 			void render(sf::RenderWindow &_render_window);
 			float getCellSizeWidth();
@@ -44,6 +47,7 @@ namespace Gameplay
 			void setCellValues();
 			int cellAroundControl(int _i, int _j);
 			void setCellBombValue(int _i, int _j, int _bomb_count);
-			
+			void onCellButtonClicked(sf::Vector2i _cell_array_pos, UI::MouseButtonType _button_type);
+			void openCell(sf::Vector2i _cell_array_pos);
 	};
 }

@@ -12,6 +12,17 @@ namespace Gameplay
 		initVariables();
 	}
 
+	void Board::update(Event::EventPollingManager &_event_manager, sf::RenderWindow &_game_window)
+	{
+		for (size_t i = 0; i < numOfRows; i++)
+		{
+			for (size_t j = 0; j < numOfColumns; j++)
+			{
+				cellArray[i][j]->update(_event_manager, _game_window);
+			}
+		}
+	}
+
 	void Board::initVariables()
 	{
 		if (!boardTexture.loadFromFile(boardTexturePath))
@@ -52,13 +63,11 @@ namespace Gameplay
 	float Board::getCellSizeWidth()
 	{
 		return (boardPlayableWidth / numOfColumns);
-
 	}
 
 	float Board::getCellSizeHeight()
 	{
 		return (boardPlayableHeight / numOfRows);
-
 	}
 
 	void Board::fillBoard()
@@ -68,7 +77,7 @@ namespace Gameplay
 			for (size_t j = 0; j < numOfColumns; j++)
 			{
 				cellArray[i][j] = new Cell(getCellSizeHeight(), getCellSizeWidth(),
-					sf::Vector2f(Cell::getCellLeftValue() + j * getCellSizeHeight() + j, Cell::getCellTopValue() + i * getCellSizeHeight()));
+					sf::Vector2f(Cell::getCellLeftValue() + j * getCellSizeHeight() + j, Cell::getCellTopValue() + i * getCellSizeHeight()), this, sf::Vector2i(i,j));
 			}
 		}
 	}
@@ -184,5 +193,22 @@ namespace Gameplay
 		default:
 			break;
 		}
+	}
+
+	void Board::onCellButtonClicked(sf::Vector2i _cell_array_pos, UI::MouseButtonType _button_type)
+	{
+		if (_button_type == UI::MouseButtonType::LEFT_CLICK) 
+		{
+			openCell(_cell_array_pos);
+		}
+		else if (_button_type == UI::MouseButtonType::RIGHT_CLICK) 
+		{
+			
+		}
+	}
+
+	void Board::openCell(sf::Vector2i _cell_array_pos)
+	{
+		cellArray[_cell_array_pos.x][_cell_array_pos.y]->open();
 	}
 }
