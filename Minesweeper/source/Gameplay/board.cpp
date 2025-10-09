@@ -1,15 +1,16 @@
 #include "../../header/Gameplay/board.h"
+#include "../../header/Gameplay/gameplayManager.h"
 
 namespace Gameplay
 {
-	Board::Board()
+	Board::Board(GameplayManager* _gameplayManager)
 	{
-		initialize();
+		initialize(_gameplayManager);
 	}
 
-	void Board::initialize()
+	void Board::initialize(GameplayManager* _gameplayManager)
 	{
-		initVariables();
+		initVariables(_gameplayManager);
 	}
 
 	void Board::update(Event::EventPollingManager &_event_manager, sf::RenderWindow &_game_window)
@@ -21,10 +22,20 @@ namespace Gameplay
 				cellArray[i][j]->update(_event_manager, _game_window);
 			}
 		}
+
+		if (_gameplayManager->getGameResult() != GameResult::LOST)
+		{
+			if (checkWin())
+			{
+				_gameplayManager->setGameResult(GameResult::WIN);
+				std::cout << "win";
+			}
+		}
 	}
 
-	void Board::initVariables()
+	void Board::initVariables(GameplayManager* _gameplayManager)
 	{
+		//Board
 		if (!boardTexture.loadFromFile(boardTexturePath))
 			std::cout << "file could not be opened";
 		else
@@ -37,14 +48,17 @@ namespace Gameplay
 
 		boardSprite.setPosition(board_pos_x, board_pos_y);
 
+		_boardState = BoardState::FIRSTCELL;
+
 		//background
 		backgroundSprite.setPosition(background_pos_x, background_pos_y);
 		backgroundSprite.setScale(2.0f, 1.2f);
 
 		//cell
 		fillBoard();
-		fillWithMines();
-		setCellValues();
+		
+
+		this->_gameplayManager = _gameplayManager;
 	}
 
 	void Board::render(sf::RenderWindow &_game_window)
@@ -57,6 +71,18 @@ namespace Gameplay
 			{
 				cellArray[i][j]->render(_game_window);
 			}
+		}
+	}
+
+	void Board::firstCellImplementation(sf::Vector2i _cell_array_pos)
+	{
+		if (firstCellVector.x == -1 && firstCellVector.y == -1 && getBoardState() == BoardState::FIRSTCELL)
+		{
+			firstCellVector.x = _cell_array_pos.x;
+			firstCellVector.y = _cell_array_pos.y;
+			setBoardState(BoardState::PLAYING);
+			fillWithMines();
+			setCellValues();
 		}
 	}
 
@@ -86,7 +112,7 @@ namespace Gameplay
 	{
 		std::random_device rd;
 		std::default_random_engine engine(rd());
-		std::uniform_int_distribution<int> mines_count_dist(10, 20);
+		std::uniform_int_distribution<int> mines_count_dist(randMinBombValue, randMaxBombValue);
 		int mines_count = mines_count_dist(engine);
 		while (mines_count > 0)
 		{
@@ -94,10 +120,16 @@ namespace Gameplay
 			std::uniform_int_distribution<int> column_dist(0, numOfColumns - 1);
 			int row_dist_pos = row_dist(engine);
 			int column_dist_pos = column_dist(engine);
+			std::cout << "A" << std::endl;
 			for (size_t i = 0; i < numOfRows; i++)
 			{
 				for (size_t j = 0; j < numOfColumns; j++)
 				{
+					if (i == firstCellVector.x && j == firstCellVector.y)
+					{
+						std::cout << "koymaya çalýþtým ama geçtim";
+						continue;
+					}
 					if (i == row_dist_pos && j == column_dist_pos && cellArray[i][j]->getCellType() != CellType::BOMB)
 					{
 						cellArray[i][j]->changeCellType(CellType::BOMB);
@@ -172,28 +204,154 @@ namespace Gameplay
 
 	void Board::onCellButtonClicked(sf::Vector2i _cell_array_pos, UI::MouseButtonType _button_type)
 	{
-		if (_button_type == UI::MouseButtonType::LEFT_CLICK) 
-			openCell(_cell_array_pos);
+		if (_button_type == UI::MouseButtonType::LEFT_CLICK)
+		{
+			firstCellImplementation(_cell_array_pos);
+			if (getBoardState() == BoardState::PLAYING)
+			{
+				openCell(_cell_array_pos);
+			}
+		}
 
 		else if (_button_type == UI::MouseButtonType::RIGHT_CLICK)
 		{
-			flagCell(_cell_array_pos);
+			markFlagCell(_cell_array_pos);
 			if (cellArray[_cell_array_pos.x][_cell_array_pos.y]->getCurrentCellState() == CellState::HIDE)
 				flagCellCount--;
 			else
 				flagCellCount++;
-
-			std::cout << flagCellCount;
 		}
 	}
 
 	void Board::openCell(sf::Vector2i _cell_array_pos)
 	{
-		cellArray[_cell_array_pos.x][_cell_array_pos.y]->open();
+		if (cellArray[_cell_array_pos.x][_cell_array_pos.y]->getCurrentCellState() == CellState::OPEN)
+			return;
+		switch (cellArray[_cell_array_pos.x][_cell_array_pos.y]->getCellType())
+		{
+			case(CellType::EMPTY):
+				openEmptyCells(_cell_array_pos.x, _cell_array_pos.y);
+				break;
+			case(CellType::BOMB):
+				openBombCells();
+				_gameplayManager->setGameResult(GameResult::LOST);
+				break;
+			default:
+				cellArray[_cell_array_pos.x][_cell_array_pos.y]->open();
+				break;
+		}
+
 	}
 
-	void Board::flagCell(sf::Vector2i _cell_array_pos)
+	void Board::openEmptyCells(int i, int j)
+	{
+		cellArray[i][j]->open();
+		if (cellArray[i][j]->getCellType() != CellType::BOMB)
+		{
+			if (j > 0 && cellArray[i][j - 1]->getCellType() != CellType::BOMB)
+			{
+				openCell(sf::Vector2i(i, j - 1));
+			}
+			if (j < (numOfColumns - 1) && cellArray[i][j + 1]->getCellType() != CellType::BOMB)
+			{
+				openCell(sf::Vector2i(i, j + 1));
+			}
+			if (i > 0 && j > 0 && cellArray[i - 1][j - 1]->getCellType() != CellType::BOMB)
+			{
+				openCell(sf::Vector2i(i - 1, j - 1));
+			}
+			if (i > 0 && cellArray[i - 1][j]->getCellType() != CellType::BOMB)
+			{
+				openCell(sf::Vector2i(i - 1, j));
+			}
+			if (i > 0 && j < (numOfColumns - 1) && cellArray[i - 1][j + 1]->getCellType() != CellType::BOMB)
+			{
+				openCell(sf::Vector2i(i - 1, j + 1));
+			}
+			if (i < (numOfRows - 1) && j > 0 && cellArray[i + 1][j - 1]->getCellType() != CellType::BOMB)
+			{
+				openCell(sf::Vector2i(i + 1, j - 1));;
+			}
+			if (i < (numOfRows - 1) && cellArray[i + 1][j]->getCellType() != CellType::BOMB)
+			{
+				openCell(sf::Vector2i(i + 1, j));
+			}
+			if (i < (numOfRows - 1) && j < (numOfColumns - 1) && cellArray[i + 1][j + 1]->getCellType() != CellType::BOMB)
+			{
+				openCell(sf::Vector2i(i + 1, j + 1));
+			}
+		}
+	}
+
+	void Board::openBombCells()
+	{
+		for (size_t i = 0; i < numOfRows; i++)
+		{
+			for (size_t j = 0; j < numOfColumns; j++)
+			{
+				if (cellArray[i][j]->getCellType() == CellType::BOMB && cellArray[i][j]->getCurrentCellState() != CellState::OPEN)
+				{
+					cellArray[i][j]->open();
+				}
+			}
+		}
+	}
+
+	void Board::markFlagCell(sf::Vector2i _cell_array_pos)
 	{
 		cellArray[_cell_array_pos.x][_cell_array_pos.y]->putFlag();
+	}
+
+	bool Board::checkWin()
+	{
+		if (controlAllCellsOpen())
+		{
+			openFlagCells();
+			return true;
+		}
+		return false;
+	}
+
+	bool Board::controlAllCellsOpen()
+	{
+		for (size_t i = 0; i < numOfRows; i++)
+		{
+			for (size_t j = 0; j < numOfColumns; j++)
+			{
+				if (cellArray[i][j]->getCellType() == CellType::BOMB && cellArray[i][j]->getCurrentCellState() == CellState::HIDE)
+				{
+					continue;
+				}
+				else if (cellArray[i][j]->getCurrentCellState() == CellState::HIDE || cellArray[i][j]->getCurrentCellState() == CellState::FLAG)
+				{
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+
+	void Board::openFlagCells()
+	{
+		for (size_t i = 0; i < numOfRows; i++)
+		{
+			for (size_t j = 0; j < numOfColumns; j++)
+			{
+				if (cellArray[i][j]->getCellType() == CellType::BOMB)
+				{
+					cellArray[i][j]->changeCurrentCellState(CellState::FLAG);
+				}
+			}
+		}
+	}
+
+	BoardState Board::setBoardState(BoardState _new_board_state)
+	{
+		return _boardState = _new_board_state;
+	}
+
+	BoardState Board::getBoardState()
+	{
+		return _boardState;
 	}
 }

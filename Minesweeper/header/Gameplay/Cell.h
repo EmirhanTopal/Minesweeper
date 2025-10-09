@@ -2,8 +2,6 @@
 #include <SFML/Graphics.hpp>
 #include "../../header/UI/UIElements/Button/Button.h"
 
-
-
 namespace Gameplay
 {
 	enum CellType
@@ -65,5 +63,6 @@ namespace Gameplay
 			bool canOpenCell();
 			void open();
 			void putFlag();
+			
 	};
 }

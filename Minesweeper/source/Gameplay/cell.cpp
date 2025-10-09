@@ -149,4 +149,7 @@ namespace Gameplay
 		else if (currentCellState == CellState::FLAG)
 			changeCurrentCellState(CellState::HIDE);
 	}
+
+	
+
 }
