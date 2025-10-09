@@ -8,6 +8,13 @@
 
 namespace Gameplay
 {
+	enum BoardState
+	{
+		FIRSTCELL,
+		PLAYING,
+		COMPLETED
+	};
+
 	class GameplayManager;
 	class Board
 	{
@@ -20,8 +27,12 @@ namespace Gameplay
 			float board_pos_y = 0.0f;
 			const float boardPlayableWidth = 810.0f;
 			const float boardPlayableHeight = 810.0f;
-			const static int numOfRows = 8; // compile time da programýn anlayabilmesi için her member için ayný ve deðiþtirilemez
-			const static int numOfColumns = 8; // compile time da programýn anlayabilmesi için her member için ayný ve deðiþtirilemez
+			const static int numOfRows = 2; // compile time da programýn anlayabilmesi için her member için ayný ve deðiþtirilemez
+			const static int numOfColumns = 2; // compile time da programýn anlayabilmesi için her member için ayný ve deðiþtirilemez
+			const static int randMinBombValue = 1;
+			const static int randMaxBombValue = 1;
+			BoardState _boardState;
+			sf::Vector2i firstCellVector { -1, -1};
 
 			//background
 			sf::Texture backgroundTexture;
@@ -43,6 +54,7 @@ namespace Gameplay
 			void initVariables(GameplayManager* _gameplayManager);
 			void update(Event::EventPollingManager& _event_manager, sf::RenderWindow &_game_window);
 			void render(sf::RenderWindow &_render_window);
+			void firstCellImplementation(sf::Vector2i _cell_array_pos);
 			float getCellSizeWidth();
 			float getCellSizeHeight();
 			void fillBoard();
@@ -52,9 +64,14 @@ namespace Gameplay
 			void setCellBombValue(int _i, int _j, int _bomb_count);
 			void onCellButtonClicked(sf::Vector2i _cell_array_pos, UI::MouseButtonType _button_type);
 			void openCell(sf::Vector2i _cell_array_pos);
-			void flagCell(sf::Vector2i _cell_array_pos);
+			void markFlagCell(sf::Vector2i _cell_array_pos);
 			void openEmptyCells(int i, int j);
 			void openBombCells();
 			bool checkWin();
+			bool controlAllCellsOpen();
+			void openFlagCells();
+			BoardState setBoardState(BoardState _new_board_state);
+			BoardState getBoardState();
+
 	};
 }
