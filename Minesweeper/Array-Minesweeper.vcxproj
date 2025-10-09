@@ -141,6 +141,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="source\Event\EventPollingManager.cpp" />
     <ClCompile Include="source\GameWindow\GameWindowManager.cpp" />
+    <ClCompile Include="source\UI\GameplayUI\gameplayUI.cpp" />
     <ClCompile Include="source\UI\SplashScreen\SplashScreenManager.cpp" />
     <ClCompile Include="source\Time\TimeManager.cpp" />
     <ClCompile Include="source\UI\UIElements\Button\button.cpp" />
@@ -152,6 +153,7 @@
     <ClInclude Include="header\Gameplay\Cell.h" />
     <ClInclude Include="header\Gameplay\gameplayManager.h" />
     <ClInclude Include="header\GameWindow\GameWindowManager.h" />
+    <ClInclude Include="header\UI\GameplayUI\GameplayUI.h" />
     <ClInclude Include="header\UI\SplashScreen\SplashScreenManager.h" />
     <ClInclude Include="header\Time\TimeManager.h" />
     <ClInclude Include="header\Sound\SoundManager.h" />
@@ -167,6 +169,21 @@
     <Image Include="assets\textures\instructions_button.png" />
     <Image Include="assets\textures\menu_button.png" />
     <Image Include="assets\textures\minesweeper_bg.png" />
+    <Image Include="assets\textures\MyCreated\1.png" />
+    <Image Include="assets\textures\MyCreated\2.png" />
+    <Image Include="assets\textures\MyCreated\3 (1).png" />
+    <Image Include="assets\textures\MyCreated\4.png" />
+    <Image Include="assets\textures\MyCreated\5.png" />
+    <Image Include="assets\textures\MyCreated\6.png" />
+    <Image Include="assets\textures\MyCreated\7.png" />
+    <Image Include="assets\textures\MyCreated\8.png" />
+    <Image Include="assets\textures\MyCreated\bomb (1).png" />
+    <Image Include="assets\textures\MyCreated\buttonCell.png" />
+    <Image Include="assets\textures\MyCreated\empty.png" />
+    <Image Include="assets\textures\MyCreated\flag.png" />
+    <Image Include="assets\textures\MyCreated\PokemonBoard2.png" />
+    <Image Include="assets\textures\MyCreated\PokemonCells.png" />
+    <Image Include="assets\textures\MyCreated\unnamed.png" />
     <Image Include="assets\textures\outscal_logo.png" />
     <Image Include="assets\textures\play_button.png" />
     <Image Include="assets\textures\PokemonBoard.png" />
@@ -175,6 +192,11 @@
     <Image Include="assets\textures\pokemon_bg.png" />
     <Image Include="assets\textures\quit_button.png" />
     <Image Include="assets\textures\restart_button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="assets\fonts\bubbleBobble.ttf" />
+    <Font Include="assets\fonts\DS_DIGIB.TTF" />
+    <Font Include="assets\fonts\roboto.ttf" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

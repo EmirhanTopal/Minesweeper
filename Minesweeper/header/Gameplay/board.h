@@ -27,12 +27,13 @@ namespace Gameplay
 			float board_pos_y = 0.0f;
 			const float boardPlayableWidth = 810.0f;
 			const float boardPlayableHeight = 810.0f;
-			const static int numOfRows = 2; // compile time da programýn anlayabilmesi için her member için ayný ve deðiþtirilemez
-			const static int numOfColumns = 2; // compile time da programýn anlayabilmesi için her member için ayný ve deðiþtirilemez
-			const static int randMinBombValue = 1;
-			const static int randMaxBombValue = 1;
+			const static int numOfRows = 8; // compile time da programýn anlayabilmesi için her member için ayný ve deðiþtirilemez
+			const static int numOfColumns = 8; // compile time da programýn anlayabilmesi için her member için ayný ve deðiþtirilemez
+			const static int randMinBombValue = 10;
+			const static int randMaxBombValue = 15;
 			BoardState _boardState;
 			sf::Vector2i firstCellVector { -1, -1};
+
 
 			//background
 			sf::Texture backgroundTexture;
@@ -45,8 +46,13 @@ namespace Gameplay
 			Cell *cellArray[numOfRows][numOfColumns];
 			int flagCellCount = 0;
 
+			//mine
+			int minesCount = 0;
+
 			//GameplayManager
 			GameplayManager *_gameplayManager;
+
+			bool isReset = false;
 
 		public:
 			Board(GameplayManager* _gameplayManager);
@@ -59,6 +65,7 @@ namespace Gameplay
 			float getCellSizeHeight();
 			void fillBoard();
 			void fillWithMines();
+			int getMineCount();
 			void setCellValues();
 			int cellAroundControl(int _i, int _j);
 			void setCellBombValue(int _i, int _j, int _bomb_count);
@@ -72,6 +79,7 @@ namespace Gameplay
 			void openFlagCells();
 			BoardState setBoardState(BoardState _new_board_state);
 			BoardState getBoardState();
+			void reset(GameplayManager* _gameplayManager);
 
 	};
 }

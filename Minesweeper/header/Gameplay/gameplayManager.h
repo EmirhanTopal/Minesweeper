@@ -2,6 +2,11 @@
 #include "board.h"
 #include "../UI/UIElements/Button/Button.h"
 
+namespace UI
+{
+	class GameplayUI;
+}
+
 namespace Gameplay
 {
 	enum GameResult
@@ -10,11 +15,12 @@ namespace Gameplay
 		LOST,
 		CONTINUE
 	};
-	
+
 	class GameplayManager
 	{
 		private:
 			Board *_board;
+			UI::GameplayUI *_gameplayUI;
 			GameResult _gameResult = CONTINUE;
 			float maxLevelDuration = 150.0f;
 			float remainingTime;
@@ -28,5 +34,8 @@ namespace Gameplay
 			GameResult setGameResult(GameResult _newGameResult);
 			GameResult getGameResult();
 			void updateRemainingTime();
+			int getRemainingTime(int _previous_time);
+			void resetGame();
 	};
+
 }

@@ -1,5 +1,6 @@
 #include "../../header/Gameplay/board.h"
 #include "../../header/Gameplay/gameplayManager.h"
+#include "../../header/UI/UIElements/Button/Button.h"
 
 namespace Gameplay
 {
@@ -56,8 +57,16 @@ namespace Gameplay
 
 		//cell
 		fillBoard();
-		
+		firstCellVector.x = -1;
+		firstCellVector.y = -1;
 
+		//mine
+		std::random_device rd;
+		std::default_random_engine engine(rd());
+		std::uniform_int_distribution<int> mines_count_dist(randMinBombValue, randMaxBombValue);
+		minesCount = mines_count_dist(engine);
+
+		//gameplay manager
 		this->_gameplayManager = _gameplayManager;
 	}
 
@@ -74,10 +83,36 @@ namespace Gameplay
 		}
 	}
 
+	void Board::onCellButtonClicked(sf::Vector2i _cell_array_pos, UI::MouseButtonType _button_type)
+	{
+		if (_button_type == UI::MouseButtonType::LEFT_CLICK)
+		{
+			firstCellImplementation(_cell_array_pos);
+			if (getBoardState() == BoardState::PLAYING)
+			{
+				openCell(_cell_array_pos);
+			}
+		}
+
+		else if (_button_type == UI::MouseButtonType::RIGHT_CLICK)
+		{
+			if (cellArray[_cell_array_pos.x][_cell_array_pos.y]->getCurrentCellState() == CellState::HIDE)
+				minesCount--;
+			else
+				minesCount++;
+			markFlagCell(_cell_array_pos);
+		}
+	}
+
 	void Board::firstCellImplementation(sf::Vector2i _cell_array_pos)
 	{
 		if (firstCellVector.x == -1 && firstCellVector.y == -1 && getBoardState() == BoardState::FIRSTCELL)
 		{
+			if (isReset == true)
+			{
+				isReset = false;
+				return;
+			}
 			firstCellVector.x = _cell_array_pos.x;
 			firstCellVector.y = _cell_array_pos.y;
 			setBoardState(BoardState::PLAYING);
@@ -112,32 +147,33 @@ namespace Gameplay
 	{
 		std::random_device rd;
 		std::default_random_engine engine(rd());
-		std::uniform_int_distribution<int> mines_count_dist(randMinBombValue, randMaxBombValue);
-		int mines_count = mines_count_dist(engine);
-		while (mines_count > 0)
+		int tempMine = minesCount;
+		while (tempMine > 0)
 		{
 			std::uniform_int_distribution<int> row_dist(0, numOfRows - 1);
 			std::uniform_int_distribution<int> column_dist(0, numOfColumns - 1);
 			int row_dist_pos = row_dist(engine);
 			int column_dist_pos = column_dist(engine);
-			std::cout << "A" << std::endl;
 			for (size_t i = 0; i < numOfRows; i++)
 			{
 				for (size_t j = 0; j < numOfColumns; j++)
 				{
 					if (i == firstCellVector.x && j == firstCellVector.y)
-					{
-						std::cout << "koymaya çalýþtým ama geçtim";
 						continue;
-					}
+
 					if (i == row_dist_pos && j == column_dist_pos && cellArray[i][j]->getCellType() != CellType::BOMB)
 					{
 						cellArray[i][j]->changeCellType(CellType::BOMB);
-						mines_count--;
+						tempMine--;
 					}
 				}
 			}
 		}
+	}
+
+	int Board::getMineCount()
+	{
+		return minesCount;
 	}
 
 	void Board::setCellValues()
@@ -202,26 +238,6 @@ namespace Gameplay
 		}
 	}
 
-	void Board::onCellButtonClicked(sf::Vector2i _cell_array_pos, UI::MouseButtonType _button_type)
-	{
-		if (_button_type == UI::MouseButtonType::LEFT_CLICK)
-		{
-			firstCellImplementation(_cell_array_pos);
-			if (getBoardState() == BoardState::PLAYING)
-			{
-				openCell(_cell_array_pos);
-			}
-		}
-
-		else if (_button_type == UI::MouseButtonType::RIGHT_CLICK)
-		{
-			markFlagCell(_cell_array_pos);
-			if (cellArray[_cell_array_pos.x][_cell_array_pos.y]->getCurrentCellState() == CellState::HIDE)
-				flagCellCount--;
-			else
-				flagCellCount++;
-		}
-	}
 
 	void Board::openCell(sf::Vector2i _cell_array_pos)
 	{
@@ -353,5 +369,20 @@ namespace Gameplay
 	BoardState Board::getBoardState()
 	{
 		return _boardState;
+	}
+
+	void Board::reset(GameplayManager* _gameplayManager)
+	{
+		for (size_t i = 0; i < numOfRows; i++)
+		{
+			for (size_t j = 0; j < numOfColumns; j++)
+			{
+				cellArray[i][j]->reset();
+			}
+		}
+		minesCount = 0;
+		_boardState = BoardState::FIRSTCELL;
+		initialize(_gameplayManager);
+		isReset = true;
 	}
 }
