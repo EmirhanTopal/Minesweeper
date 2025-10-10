@@ -4,6 +4,7 @@
 #include "../../header/Time/TimeManager.h"
 #include "../../header/UI/GameplayUI/MainMenu.h"
 #include "../../header/GameLoop/GameLoop.h"
+#include "../../header/UI/GameplayUI/GameplayUI.h"
 
 namespace Gameplay
 {
@@ -15,48 +16,37 @@ namespace Gameplay
 	void GameplayManager::initializeVariables()
 	{
 		_board = new Board(this);
-<<<<<<< Updated upstream
-=======
 		_gameplayUI = new UI::GameplayUI(this);
-		_mainMenuManager = new UI::MainMenuManager(this);
->>>>>>> Stashed changes
+		_mainUI = new UI::MainMenuManager(this);
 		remainingTime = maxLevelDuration;
 		previousSecond = maxLevelDuration + 1;
 	}
 
-	void GameplayManager::update(Event::EventPollingManager &_event_manager, sf::RenderWindow &_game_window)
-	{
-		handleGameplay(_event_manager, _game_window);
-	}
-
-	void GameplayManager::handleGameplay(Event::EventPollingManager& _event_manager, sf::RenderWindow& _game_window)
+	void GameplayManager::update(Event::EventPollingManager& _event_manager, sf::RenderWindow& _game_window)
 	{
 		updateRemainingTime();
-<<<<<<< Updated upstream
-=======
-		_mainMenuManager->update(_game_window, _event_manager);
-		_gameplayUI->update(getRemainingTime(previousSecond), _board->getMineCount(), _event_manager, _game_window);
->>>>>>> Stashed changes
-		if (_gameResult == CONTINUE)
+		if (_gameResult == CONTINUE || _gameResult == WIN || _gameResult == LOST)
 		{
+			_gameplayUI->update(getRemainingTime(previousSecond), _board->getMineCount(), _event_manager, _game_window);
 			_board->update(_event_manager, _game_window);
+		}
+		if (_gameResult == START)
+		{
+			_mainUI->update(_game_window, _event_manager);
 		}
 	}
 
 	void GameplayManager::render(sf::RenderWindow& _game_window)
 	{
 		_board->render(_game_window);
-<<<<<<< Updated upstream
-=======
-		if (_gameResult == GameResult::START)
-		{
-			_mainMenuManager->render(_game_window);
-		}
-		if (_gameResult == GameResult::CONTINUE || _gameResult == GameResult::LOST || _gameResult == GameResult::WIN)
+		if (_gameResult == CONTINUE || _gameResult == WIN || _gameResult == LOST)
 		{
 			_gameplayUI->render(_game_window);
 		}
->>>>>>> Stashed changes
+		if (_gameResult == START)
+		{
+			_mainUI->render(_game_window);
+		}
 	}
 
 	GameResult GameplayManager::setGameResult(GameResult _newGameResult)
@@ -85,8 +75,6 @@ namespace Gameplay
 			_gameResult = LOST;
 		}
 	}
-<<<<<<< Updated upstream
-=======
 
 	int GameplayManager::getRemainingTime(int _previous_time)
 	{
@@ -108,10 +96,6 @@ namespace Gameplay
 
 	void GameplayManager::quit()
 	{
-		if (_gameResult != GameResult::CONTINUE)
-		{
-			GameLoop::setGameState(GameState::EXIT);
-		}
+		GameLoop::setGameState(GameState::EXIT);
 	}
->>>>>>> Stashed changes
 }

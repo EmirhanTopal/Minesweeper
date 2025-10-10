@@ -4,7 +4,6 @@
 #include "../../Gameplay/gameplayManager.h"
 #include "../../header/Event/EventPollingManager.h"
 
-
 namespace UI
 {
 	class GameplayUI

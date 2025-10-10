@@ -11,7 +11,6 @@ using namespace UI;
 
 enum class GameState
 {
-    SPLASH_SCREEN,
     MAIN_MENU,
     GAMEPLAY,
     EXIT

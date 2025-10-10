@@ -15,7 +15,7 @@ void GameLoop::initialize()
     game_window = window_manager->getGameWindow();
     event_manager = new EventPollingManager(game_window);
 
-    splash_screen_manager = new SplashScreenManager(game_window);
+    //splash_screen_manager = new SplashScreenManager(game_window);
 
     // Initialize Sounds:
     Sound::SoundManager::Initialize();
@@ -44,9 +44,6 @@ void GameLoop::update()
 
     switch (current_state)
     {
-    case GameState::SPLASH_SCREEN:
-        splash_screen_manager->update();
-        break;
     case GameState::MAIN_MENU:
         break;
     case GameState::GAMEPLAY:
@@ -66,9 +63,6 @@ void GameLoop::render()
 
     switch (current_state)
     {
-    case GameState::SPLASH_SCREEN:
-        splash_screen_manager->render();
-        break;
     case GameState::MAIN_MENU:
         break;
     case GameState::GAMEPLAY:

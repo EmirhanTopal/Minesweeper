@@ -1,212 +1,61 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
+    <ClCompile Include="source\Gameplay\board.cpp" />
+    <ClCompile Include="source\Gameplay\cell.cpp" />
+    <ClCompile Include="source\Gameplay\gameplayManager.cpp" />
+    <ClCompile Include="source\Sound\SoundManager.cpp" />
+    <ClCompile Include="source\GameLoop\GameLoop.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="source\Event\EventPollingManager.cpp" />
+    <ClCompile Include="source\GameWindow\GameWindowManager.cpp" />
+    <ClCompile Include="source\UI\GameplayUI\gameplayUI.cpp" />
+    <ClCompile Include="source\UI\SplashScreen\SplashScreenManager.cpp" />
+    <ClCompile Include="source\Time\TimeManager.cpp" />
+    <ClCompile Include="source\UI\UIElements\Button\button.cpp" />
+    <ClCompile Include="source\UI\GameplayUI\mainMenuUI.cpp" />
+    <ClCompile Include="source\UI\GameplayUI\gameplayuı.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Event\EventPollingManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\GameWindow\GameWindowManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\GameLoop\GameLoop.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\UI\SplashScreen\SplashScreenManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Time\TimeManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Sound\SoundManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Gameplay\board.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Gameplay\cell.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\UI\UIElements\Button\button.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Gameplay\gameplayManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-<<<<<<< Updated upstream
-=======
-    <ClCompile Include="source\UI\GameplayUI\gameplayUI.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\UI\GameplayUI\mainMenuUI.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
->>>>>>> Stashed changes
+    <ClInclude Include="header\GameLoop\GameLoop.h" />
+    <ClInclude Include="header\Event\EventPollingManager.h" />
+    <ClInclude Include="header\Gameplay\Board.h" />
+    <ClInclude Include="header\Gameplay\Cell.h" />
+    <ClInclude Include="header\Gameplay\gameplayManager.h" />
+    <ClInclude Include="header\GameWindow\GameWindowManager.h" />
+    <ClInclude Include="header\UI\GameplayUI\GameplayUI.h" />
+    <ClInclude Include="header\UI\SplashScreen\SplashScreenManager.h" />
+    <ClInclude Include="header\Time\TimeManager.h" />
+    <ClInclude Include="header\Sound\SoundManager.h" />
+    <ClInclude Include="header\UI\UIElements\Button\Button.h" />
+    <ClInclude Include="header\UI\GameplayUI\MainMenu.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="header\Event\EventPollingManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\GameWindow\GameWindowManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\GameLoop\GameLoop.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\Time\TimeManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\Sound\SoundManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\UI\SplashScreen\SplashScreenManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\Gameplay\board.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\Gameplay\Cell.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\UI\UIElements\Button\Button.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\Gameplay\gameplayManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-<<<<<<< Updated upstream
-=======
-    <ClInclude Include="header\UI\GameplayUI\GameplayUI.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\UI\GameplayUI\MainMenu.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
->>>>>>> Stashed changes
-  </ItemGroup>
-  <ItemGroup>
-    <None Include=".gitignore" />
-    <None Include="CppProperties.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="assets\textures\board.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="assets\textures\cells.jpeg">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="assets\textures\instructions_button.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="assets\textures\menu_button.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="assets\textures\minesweeper_bg.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="assets\textures\outscal_logo.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="assets\textures\play_button.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="assets\textures\quit_button.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="assets\textures\restart_button.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="assets\textures\PokemonBoard.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="assets\textures\PokemonCells.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="assets\textures\pokemon_bg.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="assets\textures\PokemonBoard2.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-<<<<<<< Updated upstream
-=======
-    <Image Include="assets\textures\MyCreated\1.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="assets\textures\MyCreated\2.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="assets\textures\MyCreated\3 (1).png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="assets\textures\MyCreated\4.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="assets\textures\MyCreated\5.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="assets\textures\MyCreated\6.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="assets\textures\MyCreated\7.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="assets\textures\MyCreated\8.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="assets\textures\MyCreated\bomb (1).png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="assets\textures\MyCreated\buttonCell.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="assets\textures\MyCreated\empty.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="assets\textures\MyCreated\flag.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="assets\textures\MyCreated\PokemonBoard2.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="assets\textures\MyCreated\PokemonCells.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="assets\textures\MyCreated\unnamed.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="assets\textures\ResetButton.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="assets\textures\pokemonPlayy.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="assets\textures\pokemonQuitt.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="assets\textures\SummerPokemon.png">
-      <Filter>Resource Files</Filter>
-    </Image>
+    <Image Include="assets\textures\board.png" />
+    <Image Include="assets\textures\cells.jpeg" />
+    <Image Include="assets\textures\instructions_button.png" />
+    <Image Include="assets\textures\menu_button.png" />
+    <Image Include="assets\textures\minesweeper_bg.png" />
+    <Image Include="assets\textures\outscal_logo.png" />
+    <Image Include="assets\textures\play_button.png" />
+    <Image Include="assets\textures\PokemonBoard.png" />
+    <Image Include="assets\textures\PokemonBoard2.png" />
+    <Image Include="assets\textures\PokemonCells.png" />
+    <Image Include="assets\textures\pokemonPlayy.png" />
+    <Image Include="assets\textures\pokemonQuitt.png" />
+    <Image Include="assets\textures\pokemon_bg.png" />
+    <Image Include="assets\textures\quit_button.png" />
+    <Image Include="assets\textures\ResetButton.png" />
+    <Image Include="assets\textures\restart_button.png" />
+    <Image Include="assets\textures\summerPokemon.png" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="assets\fonts\bubbleBobble.ttf" />
     <Font Include="assets\fonts\DS_DIGIB.TTF" />
     <Font Include="assets\fonts\roboto.ttf" />
->>>>>>> Stashed changes
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".gitignore" />
+    <None Include="CppProperties.json" />
   </ItemGroup>
 </Project>
