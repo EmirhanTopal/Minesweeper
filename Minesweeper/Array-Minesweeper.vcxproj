@@ -142,7 +142,6 @@
     <ClCompile Include="source\Event\EventPollingManager.cpp" />
     <ClCompile Include="source\GameWindow\GameWindowManager.cpp" />
     <ClCompile Include="source\UI\GameplayUI\gameplayuı.cpp" />
-    <ClCompile Include="source\UI\GameplayUI\gameplayuı.cpp" />
     <ClCompile Include="source\UI\GameplayUI\mainMenuUI.cpp" />
     <ClCompile Include="source\UI\SplashScreen\SplashScreenManager.cpp" />
     <ClCompile Include="source\Time\TimeManager.cpp" />
