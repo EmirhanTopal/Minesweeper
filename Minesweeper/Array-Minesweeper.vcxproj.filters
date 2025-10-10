@@ -48,6 +48,15 @@
     <ClCompile Include="source\Gameplay\gameplayManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+<<<<<<< Updated upstream
+=======
+    <ClCompile Include="source\UI\GameplayUI\gameplayUI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\UI\GameplayUI\mainMenuUI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+>>>>>>> Stashed changes
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header\Event\EventPollingManager.h">
@@ -80,6 +89,15 @@
     <ClInclude Include="header\Gameplay\gameplayManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+<<<<<<< Updated upstream
+=======
+    <ClInclude Include="header\UI\GameplayUI\GameplayUI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="header\UI\GameplayUI\MainMenu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+>>>>>>> Stashed changes
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
@@ -125,5 +143,70 @@
     <Image Include="assets\textures\PokemonBoard2.png">
       <Filter>Resource Files</Filter>
     </Image>
+<<<<<<< Updated upstream
+=======
+    <Image Include="assets\textures\MyCreated\1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\MyCreated\2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\MyCreated\3 (1).png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\MyCreated\4.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\MyCreated\5.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\MyCreated\6.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\MyCreated\7.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\MyCreated\8.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\MyCreated\bomb (1).png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\MyCreated\buttonCell.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\MyCreated\empty.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\MyCreated\flag.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\MyCreated\PokemonBoard2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\MyCreated\PokemonCells.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\MyCreated\unnamed.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\ResetButton.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\pokemonPlayy.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\pokemonQuitt.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\SummerPokemon.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="assets\fonts\bubbleBobble.ttf" />
+    <Font Include="assets\fonts\DS_DIGIB.TTF" />
+    <Font Include="assets\fonts\roboto.ttf" />
+>>>>>>> Stashed changes
   </ItemGroup>
 </Project>

@@ -13,7 +13,61 @@ namespace Gameplay
 		initVariables(_gameplayManager);
 	}
 
+
+	void Board::initVariables(GameplayManager* _gameplayManager)
+	{
+		//Board
+		if (!boardTexture.loadFromFile(boardTexturePath))
+			std::cout << "file could not be opened";
+		else
+			boardSprite.setTexture(boardTexture);
+		boardSprite.setPosition(board_pos_x, board_pos_y);
+
+		if (!backgroundTexture.loadFromFile(backgroundTexturePath))
+			std::cout << "file could not be opened";
+		else
+			backgroundSprite.setTexture(backgroundTexture);
+		//background
+		backgroundSprite.setPosition(background_pos_x, background_pos_y);
+
+		_boardState = BoardState::FIRSTCELL;
+
+		//cell
+		fillBoard();
+		firstCellVector.x = -1;
+		firstCellVector.y = -1;
+
+		//mine
+		generateRandomMineNumber();
+
+		//gameplay manager
+		this->_gameplayManager = _gameplayManager;
+	}
+
 	void Board::update(Event::EventPollingManager &_event_manager, sf::RenderWindow &_game_window)
+	{
+		handleCell(_event_manager, _game_window);
+		handleGameOver();
+
+	}
+
+	void Board::render(sf::RenderWindow &_game_window)
+	{
+		_game_window.draw(backgroundSprite);
+		if (_gameplayManager->getGameResult() == GameResult::CONTINUE || _gameplayManager->getGameResult() == GameResult::LOST || _gameplayManager->getGameResult() == GameResult::WIN)
+		{
+			_game_window.draw(boardSprite);
+			for (size_t i = 0; i < numOfRows; i++)
+			{
+				for (size_t j = 0; j < numOfColumns; j++)
+				{
+					cellArray[i][j]->render(_game_window);
+				}
+			}
+		}
+	}
+
+	void Board::handleCell(Event::EventPollingManager& _event_manager, sf::RenderWindow& _game_window)
 	{
 		for (size_t i = 0; i < numOfRows; i++)
 		{
@@ -22,7 +76,10 @@ namespace Gameplay
 				cellArray[i][j]->update(_event_manager, _game_window);
 			}
 		}
+	}
 
+	void Board::handleGameOver()
+	{
 		if (_gameplayManager->getGameResult() != GameResult::LOST)
 		{
 			if (checkWin())
@@ -33,8 +90,9 @@ namespace Gameplay
 		}
 	}
 
-	void Board::initVariables(GameplayManager* _gameplayManager)
+	void Board::generateRandomMineNumber()
 	{
+<<<<<<< Updated upstream
 		//Board
 		if (!boardTexture.loadFromFile(boardTexturePath))
 			std::cout << "file could not be opened";
@@ -72,6 +130,12 @@ namespace Gameplay
 				cellArray[i][j]->render(_game_window);
 			}
 		}
+=======
+		std::random_device rd;
+		std::default_random_engine engine(rd());
+		std::uniform_int_distribution<int> mines_count_dist(randMinBombValue, randMaxBombValue);
+		minesCount = mines_count_dist(engine);
+>>>>>>> Stashed changes
 	}
 
 	void Board::firstCellImplementation(sf::Vector2i _cell_array_pos)
@@ -80,6 +144,7 @@ namespace Gameplay
 		{
 			firstCellVector.x = _cell_array_pos.x;
 			firstCellVector.y = _cell_array_pos.y;
+			std::cout << "sa";
 			setBoardState(BoardState::PLAYING);
 			fillWithMines();
 			setCellValues();
@@ -354,4 +419,22 @@ namespace Gameplay
 	{
 		return _boardState;
 	}
+<<<<<<< Updated upstream
+=======
+
+	void Board::reset(GameplayManager* _gameplayManager)
+	{
+		for (size_t i = 0; i < numOfRows; i++)
+		{
+			for (size_t j = 0; j < numOfColumns; j++)
+			{
+				cellArray[i][j]->reset();
+			}
+		}
+		generateRandomMineNumber();
+		_boardState = BoardState::FIRSTCELL;
+		firstCellVector.x = -1;
+		firstCellVector.y = -1;
+	}
+>>>>>>> Stashed changes
 }

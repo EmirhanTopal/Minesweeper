@@ -141,6 +141,11 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="source\Event\EventPollingManager.cpp" />
     <ClCompile Include="source\GameWindow\GameWindowManager.cpp" />
+<<<<<<< Updated upstream
+=======
+    <ClCompile Include="source\UI\GameplayUI\gameplayUI.cpp" />
+    <ClCompile Include="source\UI\GameplayUI\mainMenuUI.cpp" />
+>>>>>>> Stashed changes
     <ClCompile Include="source\UI\SplashScreen\SplashScreenManager.cpp" />
     <ClCompile Include="source\Time\TimeManager.cpp" />
     <ClCompile Include="source\UI\UIElements\Button\button.cpp" />
@@ -152,6 +157,11 @@
     <ClInclude Include="header\Gameplay\Cell.h" />
     <ClInclude Include="header\Gameplay\gameplayManager.h" />
     <ClInclude Include="header\GameWindow\GameWindowManager.h" />
+<<<<<<< Updated upstream
+=======
+    <ClInclude Include="header\UI\GameplayUI\GameplayUI.h" />
+    <ClInclude Include="header\UI\GameplayUI\MainMenu.h" />
+>>>>>>> Stashed changes
     <ClInclude Include="header\UI\SplashScreen\SplashScreenManager.h" />
     <ClInclude Include="header\Time\TimeManager.h" />
     <ClInclude Include="header\Sound\SoundManager.h" />
@@ -172,9 +182,13 @@
     <Image Include="assets\textures\PokemonBoard.png" />
     <Image Include="assets\textures\PokemonBoard2.png" />
     <Image Include="assets\textures\PokemonCells.png" />
+    <Image Include="assets\textures\pokemonPlayy.png" />
+    <Image Include="assets\textures\pokemonQuitt.png" />
     <Image Include="assets\textures\pokemon_bg.png" />
     <Image Include="assets\textures\quit_button.png" />
+    <Image Include="assets\textures\ResetButton.png" />
     <Image Include="assets\textures\restart_button.png" />
+    <Image Include="assets\textures\SummerPokemon.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

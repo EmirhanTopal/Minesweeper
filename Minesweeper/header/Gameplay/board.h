@@ -27,17 +27,24 @@ namespace Gameplay
 			float board_pos_y = 0.0f;
 			const float boardPlayableWidth = 810.0f;
 			const float boardPlayableHeight = 810.0f;
+<<<<<<< Updated upstream
 			const static int numOfRows = 2; // compile time da programýn anlayabilmesi için her member için ayný ve deðiþtirilemez
 			const static int numOfColumns = 2; // compile time da programýn anlayabilmesi için her member için ayný ve deðiþtirilemez
 			const static int randMinBombValue = 1;
 			const static int randMaxBombValue = 1;
+=======
+			const static int numOfRows = 8; // compile time da programýn anlayabilmesi için her member için ayný ve deðiþtirilemez
+			const static int numOfColumns = 8; // compile time da programýn anlayabilmesi için her member için ayný ve deðiþtirilemez
+			const static int randMinBombValue = 8;
+			const static int randMaxBombValue = 10;
+>>>>>>> Stashed changes
 			BoardState _boardState;
 			sf::Vector2i firstCellVector { -1, -1};
 
 			//background
 			sf::Texture backgroundTexture;
 			sf::Sprite backgroundSprite;
-			std::string backgroundTexturePath = "assets/textures/pokemon_bg.png";
+			std::string backgroundTexturePath = "assets/textures/SummerPokemon.png";
 			float background_pos_x = 0.0f;
 			float background_pos_y = 0.0f;
 
@@ -45,6 +52,13 @@ namespace Gameplay
 			Cell *cellArray[numOfRows][numOfColumns];
 			int flagCellCount = 0;
 
+<<<<<<< Updated upstream
+=======
+			//mine
+			int minesCount = 0;
+
+
+>>>>>>> Stashed changes
 			//GameplayManager
 			GameplayManager *_gameplayManager;
 
@@ -54,6 +68,9 @@ namespace Gameplay
 			void initVariables(GameplayManager* _gameplayManager);
 			void update(Event::EventPollingManager& _event_manager, sf::RenderWindow &_game_window);
 			void render(sf::RenderWindow &_render_window);
+			void handleCell(Event::EventPollingManager& _event_manager, sf::RenderWindow& _game_window);
+			void handleGameOver();
+			void generateRandomMineNumber();
 			void firstCellImplementation(sf::Vector2i _cell_array_pos);
 			float getCellSizeWidth();
 			float getCellSizeHeight();
