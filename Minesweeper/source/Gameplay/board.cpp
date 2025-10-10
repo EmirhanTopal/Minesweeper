@@ -94,6 +94,7 @@ namespace Gameplay
 	{
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 		//Board
 		if (!boardTexture.loadFromFile(boardTexturePath))
 			std::cout << "file could not be opened";
@@ -134,13 +135,18 @@ namespace Gameplay
 =======
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 		std::random_device rd;
 		std::default_random_engine engine(rd());
 		std::uniform_int_distribution<int> mines_count_dist(randMinBombValue, randMaxBombValue);
 		minesCount = mines_count_dist(engine);
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 >>>>>>> Stashed changes
 =======
+=======
+>>>>>>> Stashed changes
 	}
 
 	void Board::onCellButtonClicked(sf::Vector2i _cell_array_pos, UI::MouseButtonType _button_type)

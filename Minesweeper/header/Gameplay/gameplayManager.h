@@ -27,7 +27,13 @@ namespace Gameplay
 			Board *_board;
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 			GameResult _gameResult = CONTINUE;
+=======
+			UI::GameplayUI *_gameplayUI;
+			UI::MainMenuManager* _mainMenuManager;
+			GameResult _gameResult = START;
+>>>>>>> Stashed changes
 =======
 			UI::GameplayUI *_gameplayUI;
 			UI::MainMenuManager* _mainMenuManager;
@@ -57,6 +63,9 @@ namespace Gameplay
 			void play();
 			void quit();
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes

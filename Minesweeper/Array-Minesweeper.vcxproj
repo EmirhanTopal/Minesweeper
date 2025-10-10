@@ -144,6 +144,7 @@
 <<<<<<< Updated upstream
 =======
     <ClCompile Include="source\UI\GameplayUI\gameplayUI.cpp" />
+    <ClCompile Include="source\UI\GameplayUI\mainMenuUI.cpp" />
     <ClCompile Include="source\UI\SplashScreen\SplashScreenManager.cpp" />
     <ClCompile Include="source\Time\TimeManager.cpp" />
     <ClCompile Include="source\UI\UIElements\Button\button.cpp" />
@@ -158,6 +159,7 @@
 <<<<<<< Updated upstream
 =======
     <ClInclude Include="header\UI\GameplayUI\GameplayUI.h" />
+    <ClInclude Include="header\UI\GameplayUI\MainMenu.h" />
     <ClInclude Include="header\UI\SplashScreen\SplashScreenManager.h" />
     <ClInclude Include="header\Time\TimeManager.h" />
     <ClInclude Include="header\Sound\SoundManager.h" />
@@ -184,6 +186,7 @@
     <Image Include="assets\textures\quit_button.png" />
     <Image Include="assets\textures\ResetButton.png" />
     <Image Include="assets\textures\restart_button.png" />
+    <Image Include="assets\textures\SummerPokemon.png" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="assets\fonts\bubbleBobble.ttf" />

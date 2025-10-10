@@ -20,6 +20,9 @@ namespace Gameplay
 		_gameplayUI = new UI::GameplayUI(this);
 		_mainMenuManager = new UI::MainMenuManager(this);
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -37,7 +40,10 @@ namespace Gameplay
 		updateRemainingTime();
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 		_mainMenuManager->update(_game_window, _event_manager);
@@ -54,7 +60,10 @@ namespace Gameplay
 		_board->render(_game_window);
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 		if (_gameResult == GameResult::START)
@@ -66,6 +75,9 @@ namespace Gameplay
 			_gameplayUI->render(_game_window);
 		}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -126,6 +138,9 @@ namespace Gameplay
 		}
 	}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes

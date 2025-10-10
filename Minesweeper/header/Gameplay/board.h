@@ -29,8 +29,8 @@ namespace Gameplay
 			const float boardPlayableHeight = 810.0f;
 			const static int numOfRows = 8; // compile time da programýn anlayabilmesi için her member için ayný ve deðiþtirilemez
 			const static int numOfColumns = 8; // compile time da programýn anlayabilmesi için her member için ayný ve deðiþtirilemez
-			const static int randMinBombValue = 10;
-			const static int randMaxBombValue = 15;
+			const static int randMinBombValue = 8;
+			const static int randMaxBombValue = 10;
 			BoardState _boardState;
 			sf::Vector2i firstCellVector { -1, -1};
 
@@ -47,6 +47,7 @@ namespace Gameplay
 
 			//mine
 			int minesCount = 0;
+
 
 			//GameplayManager
 			GameplayManager *_gameplayManager;
