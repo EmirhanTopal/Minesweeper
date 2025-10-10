@@ -19,6 +19,9 @@ namespace Gameplay
 =======
 		_gameplayUI = new UI::GameplayUI(this);
 		_mainMenuManager = new UI::MainMenuManager(this);
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 		remainingTime = maxLevelDuration;
 		previousSecond = maxLevelDuration + 1;
@@ -33,7 +36,10 @@ namespace Gameplay
 	{
 		updateRemainingTime();
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 		_mainMenuManager->update(_game_window, _event_manager);
 		_gameplayUI->update(getRemainingTime(previousSecond), _board->getMineCount(), _event_manager, _game_window);
 >>>>>>> Stashed changes
@@ -47,7 +53,10 @@ namespace Gameplay
 	{
 		_board->render(_game_window);
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 		if (_gameResult == GameResult::START)
 		{
 			_mainMenuManager->render(_game_window);
@@ -56,6 +65,9 @@ namespace Gameplay
 		{
 			_gameplayUI->render(_game_window);
 		}
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 	}
 
@@ -113,5 +125,8 @@ namespace Gameplay
 			GameLoop::setGameState(GameState::EXIT);
 		}
 	}
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 }

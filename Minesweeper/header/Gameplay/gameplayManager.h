@@ -26,7 +26,13 @@ namespace Gameplay
 		private:
 			Board *_board;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 			GameResult _gameResult = CONTINUE;
+=======
+			UI::GameplayUI *_gameplayUI;
+			UI::MainMenuManager* _mainMenuManager;
+			GameResult _gameResult = START;
+>>>>>>> Stashed changes
 =======
 			UI::GameplayUI *_gameplayUI;
 			UI::MainMenuManager* _mainMenuManager;
@@ -50,6 +56,9 @@ namespace Gameplay
 			void resetGame();
 			void play();
 			void quit();
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 	};
 }

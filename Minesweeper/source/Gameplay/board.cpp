@@ -93,6 +93,7 @@ namespace Gameplay
 	void Board::generateRandomMineNumber()
 	{
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 		//Board
 		if (!boardTexture.loadFromFile(boardTexturePath))
 			std::cout << "file could not be opened";
@@ -131,10 +132,36 @@ namespace Gameplay
 			}
 		}
 =======
+=======
+>>>>>>> Stashed changes
 		std::random_device rd;
 		std::default_random_engine engine(rd());
 		std::uniform_int_distribution<int> mines_count_dist(randMinBombValue, randMaxBombValue);
 		minesCount = mines_count_dist(engine);
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+	}
+
+	void Board::onCellButtonClicked(sf::Vector2i _cell_array_pos, UI::MouseButtonType _button_type)
+	{
+		if (_button_type == UI::MouseButtonType::LEFT_CLICK)
+		{
+			firstCellImplementation(_cell_array_pos);
+			if (getBoardState() == BoardState::PLAYING)
+			{
+				openCell(_cell_array_pos);
+			}
+		}
+
+		else if (_button_type == UI::MouseButtonType::RIGHT_CLICK)
+		{
+			if (cellArray[_cell_array_pos.x][_cell_array_pos.y]->getCurrentCellState() == CellState::HIDE)
+				minesCount--;
+			else
+				minesCount++;
+			markFlagCell(_cell_array_pos);
+		}
 >>>>>>> Stashed changes
 	}
 
